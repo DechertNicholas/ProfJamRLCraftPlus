@@ -40,6 +40,9 @@ foreach ($mod in $modlist.mods) {
 Write-Host "Copying modified configs..."
 Copy-Item -Path "$SCRIPT_EXTRACT\$($FILE + $tag)\config" -Destination .\ -Recurse -Force
 
+Write-Host "Copying added scripts..."
+Copy-Item -Path "$SCRIPT_EXTRACT\$($FILE + $tag)\scripts" -Destination .\ -Recurse -Force
+
 Write-Host "Completed!"
 Write-Host "Report any errors to Valyrin on discord, or post an issue in the Github"
 Write-Host "Press 'enter' to exit this updater. You should be good to join the server."
