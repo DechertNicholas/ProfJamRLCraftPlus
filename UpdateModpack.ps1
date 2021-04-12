@@ -27,13 +27,19 @@ $download = "https://github.com/$repo/releases/download/$tag/$versionedName"
 
 Invoke-WebRequest $download -OutFile "$SCRIPT_DOWNLOAD\$versionedName"
 
-Expand-Archive -Path "$SCRIPT_DOWNLOAD\$versionedName" -DestinationPath "$SCRIPT_EXTRACT\$($FILE + $tag)"
+Expand-Archive -Path "$SCRIPT_DOWNLOAD\$versionedName" -DestinationPath "$SCRIPT_EXTRACT\$($FILE + $tag)" -Force
 
 # download all the mods
 $modlist = Get-Content "$SCRIPT_EXTRACT\$($FILE + $tag)\AddedMods.json" | ConvertFrom-Json
 foreach ($mod in $modlist.mods) {
-    Write-Host "Processing $($mod.Name)..."
-    Invoke-WebRequest "$($mod.url)" -OutFile ".\mods\$($mod.fileName)"
+    Write-Host "Processing $($mod.Name)..." -NoNewline
+    # Only download if it doesn't exist
+    if (!(Test-Path ".\mods\$($mod.fileName)")) {
+        Invoke-WebRequest "$($mod.url)" -OutFile ".\mods\$($mod.fileName)"
+        Write-Host "" # finish the newline
+    } else {
+        Write-Host " (Skipping download, file exists)"
+    }
 }
 
 # copy edited config files and overwrite old ones
