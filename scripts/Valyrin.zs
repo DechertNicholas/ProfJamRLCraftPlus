@@ -58,15 +58,16 @@ mods.compatskills.MaterialLock.addMaterialLock("ma.supremium", "reskillable:buil
 print("Finished locking down TConstruct materials and modifiers");
 
 print("Editing frost rods and blizz rods");
-// compatability for frostRod and blizzRod
 val coldRod = <ore:coldRod>;
 coldRod.addItems([<simpledifficulty:frost_rod>,<thermalfoundation:material:2048>]);
-recipes.replaceAllOccurences(<simpledifficulty:frost_rod>, <ore:coldRod>);
 
-// same for powder
-val coldPowder = <ore:coldPowder>;
-coldPowder.addItems([<simpledifficulty:frost_powder>,<thermalfoundation:material:2049>]);
-recipes.replaceAllOccurences(<simpledifficulty:frost_powder>, <ore:coldPowder>);
-recipes.replaceAllOccurences(<thermalfoundation:material:2049>, <ore:coldPowder>);
+// compatability for frostRod and blizzRod
+recipes.addShaped("lolarecipe71",<simpledifficulty:chiller>,
+ [[<ore:coldRod>,null,<ore:coldRod>],
+  [<ore:coldRod>,<ore:cobblestone>,<ore:coldRod>],
+  [<ore:cobblestone>,<minecraft:redstone>,<ore:cobblestone>]]);
+
+recipes.addShapeless("frosttoblizzpowder", <thermalfoundation:material:2049>, [<simpledifficulty:frost_powder>]);
+recipes.addShapeless("blizztofrostpowder", <simpledifficulty:frost_powder>, [<thermalfoundation:material:2049>]);
 
 print("Finished editing frost rods and blizz rods");
