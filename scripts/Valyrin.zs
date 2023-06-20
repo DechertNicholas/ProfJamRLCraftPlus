@@ -1,3 +1,7 @@
+#priority -1
+
+import crafttweaker.oredict.IOreDictEntry;
+
 print("Locking down TConstruct materials and modifiers....");
 
 mods.compatskills.MaterialLock.addMaterialLock("wood", "reskillable:building|2");
@@ -52,3 +56,17 @@ mods.compatskills.MaterialLock.addMaterialLock("ma.superium", "reskillable:build
 mods.compatskills.MaterialLock.addMaterialLock("ma.supremium", "reskillable:building|32", "reskillable:magic|32");
 
 print("Finished locking down TConstruct materials and modifiers");
+
+print("Editing frost rods and blizz rods");
+// compatability for frostRod and blizzRod
+val coldRod = <ore:coldRod>;
+coldRod.addItems([<simpledifficulty:frost_rod>,<thermalfoundation:material:2048>]);
+recipes.replaceAllOccurences(<simpledifficulty:frost_rod>, <ore:coldRod>);
+
+// same for powder
+val coldPowder = <ore:coldPowder>;
+coldPowder.addItems([<simpledifficulty:frost_powder>,<thermalfoundation:material:2049>]);
+recipes.replaceAllOccurences(<simpledifficulty:frost_powder>, <ore:coldPowder>);
+recipes.replaceAllOccurences(<thermalfoundation:material:2049>, <ore:coldPowder>);
+
+print("Finished editing frost rods and blizz rods");
