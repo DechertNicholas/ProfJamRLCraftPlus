@@ -71,3 +71,8 @@ recipes.addShapeless("frosttoblizzpowder", <thermalfoundation:material:2049>, [<
 recipes.addShapeless("blizztofrostpowder", <simpledifficulty:frost_powder>, [<thermalfoundation:material:2049>]);
 
 print("Finished editing frost rods and blizz rods");
+
+// Silver ingot from pulverized silver
+furnace.addRecipe(<thermalfoundation:material:130>, <thermalfoundation:material:66>);
+// Silver ingot from silver dust
+furnace.addRecipe(<thermalfoundation:material:130>, <mekanism:dust:5>);
