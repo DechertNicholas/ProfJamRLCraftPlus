@@ -1,6 +1,7 @@
 #priority -1
 
 import crafttweaker.oredict.IOreDictEntry;
+import crafttweaker.item.IItemStack;
 
 print("Locking down TConstruct materials and modifiers....");
 
@@ -76,3 +77,6 @@ print("Finished editing frost rods and blizz rods");
 furnace.addRecipe(<thermalfoundation:material:130>, <thermalfoundation:material:66>);
 // Silver ingot from silver dust
 furnace.addRecipe(<thermalfoundation:material:130>, <mekanism:dust:5>);
+
+var oreCrystalHeart as IOreDictEntry = <ore:oreCrystalHeart>;
+oreCrystalHeart.addItems([<scalinghealth:crystalore>]);
