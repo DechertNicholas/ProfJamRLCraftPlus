@@ -1,3 +1,8 @@
+#priority -1
+
+import crafttweaker.oredict.IOreDictEntry;
+import crafttweaker.item.IItemStack;
+
 print("Locking down TConstruct materials and modifiers....");
 
 mods.compatskills.MaterialLock.addMaterialLock("wood", "reskillable:building|2");
@@ -52,3 +57,26 @@ mods.compatskills.MaterialLock.addMaterialLock("ma.superium", "reskillable:build
 mods.compatskills.MaterialLock.addMaterialLock("ma.supremium", "reskillable:building|32", "reskillable:magic|32");
 
 print("Finished locking down TConstruct materials and modifiers");
+
+print("Editing frost rods and blizz rods");
+val coldRod = <ore:coldRod>;
+coldRod.addItems([<simpledifficulty:frost_rod>,<thermalfoundation:material:2048>]);
+
+// compatability for frostRod and blizzRod
+recipes.addShaped("lolarecipe71",<simpledifficulty:chiller>,
+ [[<ore:coldRod>,null,<ore:coldRod>],
+  [<ore:coldRod>,<ore:cobblestone>,<ore:coldRod>],
+  [<ore:cobblestone>,<minecraft:redstone>,<ore:cobblestone>]]);
+
+recipes.addShapeless("frosttoblizzpowder", <thermalfoundation:material:2049>, [<simpledifficulty:frost_powder>]);
+recipes.addShapeless("blizztofrostpowder", <simpledifficulty:frost_powder>, [<thermalfoundation:material:2049>]);
+
+print("Finished editing frost rods and blizz rods");
+
+// Silver ingot from pulverized silver
+furnace.addRecipe(<thermalfoundation:material:130>, <thermalfoundation:material:66>);
+// Silver ingot from silver dust
+furnace.addRecipe(<thermalfoundation:material:130>, <mekanism:dust:5>);
+
+var oreCrystalHeart as IOreDictEntry = <ore:oreCrystalHeart>;
+oreCrystalHeart.addItems([<scalinghealth:crystalore>]);

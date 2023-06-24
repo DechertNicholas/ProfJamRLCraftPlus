@@ -1,5 +1,5 @@
 {
-    "mods": [
+    "common": [
         {
             "name": "Applied Energistics 2",
             "url": "https://media.forgecdn.net/files/2747/63/appliedenergistics2-rv6-stable-7.jar",
@@ -94,6 +94,13 @@
             "name": "ZeroCore 2",
             "url": "https://mediafilez.forgecdn.net/files/3194/743/zerocore-1.12.2-0.1.2.9.jar",
             "fileName": "zerocore-1.12.2-0.1.2.9.jar"
+        }
+    ],
+    "server": [
+        {
+            "name": "Morpheus",
+            "url": "https://mediafilez.forgecdn.net/files/2664/449/Morpheus-1.12.2-3.5.106.jar",
+            "fileName": "Morpheus-1.12.2-3.5.106.jar"
         }
     ]
 }
