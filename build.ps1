@@ -28,7 +28,7 @@ Expand-Archive $clientZip -DestinationPath .\client
 Write-Output "Extracting server zip"
 Expand-Archive $serverZip -DestinationPath .\server
 
-$clientFolderPrefix = ".\client\overrides\mods"
+#$clientFolderPrefix = ".\client\overrides\mods"
 $serverFolderPrefix = ".\server\mods"
 
 $mods = Get-Content '.\Modpack Configurations\AddedMods.json' | ConvertFrom-Json
@@ -36,8 +36,8 @@ $mods = Get-Content '.\Modpack Configurations\AddedMods.json' | ConvertFrom-Json
 Write-Output "---- Downloading Mods ----"
 foreach ($common in $mods.common) {
     Write-Output "Processing $($common.name)"
-    Invoke-WebRequest -Uri $common.url -OutFile "$clientFolderPrefix\$($common.fileName)"
-    Copy-Item "$clientFolderPrefix\$($common.fileName)" "$serverFolderPrefix\$($common.fileName)"
+    Invoke-WebRequest -Uri $common.url -OutFile "$serverFolderPrefix\$($common.fileName)"
+    #Copy-Item "$clientFolderPrefix\$($common.fileName)" "$serverFolderPrefix\$($common.fileName)"
 }
 
 foreach ($server in $mods.server) {
@@ -102,5 +102,7 @@ $manifest | ConvertTo-Json -Depth 9 | % { [System.Text.RegularExpressions.Regex]
 
 Write-Output "---- Compressing Archives ----"
 New-Item -ItemType Directory -Name "artifacts" -ErrorAction "SilentlyContinue" | Out-Null
+Write-Output "Compressing client zip"
 Compress-Archive -Path ".\client\overrides\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version.zip"
+Write-Output "Compressing server zip"
 Compress-Archive -Path ".\server\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version-Server.zip"
