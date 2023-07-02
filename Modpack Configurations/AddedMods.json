@@ -6,7 +6,8 @@
             "fileName": "appliedenergistics2-rv6-stable-7.jar",
             "projectID": 223794,
             "fileID": 2747063,
-            "publisher": "thetechnici4n"
+            "publisher": "thetechnici4n",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/applied-energistics-2"
         },
         {
             "name": "Code Chicken Lib",
@@ -14,7 +15,8 @@
             "fileName": "CodeChickenLib-1.12.2-3.2.3.358-universal.jar",
             "projectID": 242818,
             "fileID": 2779848,
-            "publisher": "covers1624"
+            "publisher": "covers1624",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/codechicken-lib-1-8"
         },
         {
             "name": "CoFH Core",
@@ -22,7 +24,8 @@
             "fileName": "CoFHCore-1.12.2-4.6.6.1-universal.jar",
             "projectID": 69162,
             "fileID": 2920433,
-            "publisher": "TeamCoFH"
+            "publisher": "TeamCoFH",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/cofh-core"
         },
         {
             "name": "CoFH World",
@@ -30,7 +33,8 @@
             "fileName": "CoFHWorld-1.12.2-1.4.0.1-universal.jar",
             "projectID": 271384,
             "fileID": 2920434,
-            "publisher": "TeamCoFH"
+            "publisher": "TeamCoFH",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/cofh-world"
         },
         {
             "name": "Cucumber",
@@ -38,7 +42,8 @@
             "fileName": "Cucumber-1.12.2-1.1.3.jar",
             "projectID": 272335,
             "fileID": 2645867,
-            "publisher": "BlakeBr0"
+            "publisher": "BlakeBr0",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/cucumber"
         },
         {
             "name": "Extreme Reactors",
@@ -46,7 +51,8 @@
             "fileName": "ExtremeReactors-1.12.2-0.4.5.68.jar",
             "projectID": 250277,
             "fileID": 3194746,
-            "publisher": "ZeroNoRyouki"
+            "publisher": "ZeroNoRyouki",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/extreme-reactors"
         },
         {
             "name": "Gravestone",
@@ -54,7 +60,8 @@
             "fileName": "gravestone-1.10.3.jar",
             "projectID": 238551,
             "fileID": 2744766,
-            "publisher": "henkelmax"
+            "publisher": "henkelmax",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/gravestone-mod"
         },
         {
             "name": "Mekanism",
@@ -62,7 +69,8 @@
             "fileName": "Mekanism-1.12.2-9.8.3.390.jar",
             "projectID": 268560,
             "fileID": 2835175,
-            "publisher": "bradyaidanc"
+            "publisher": "bradyaidanc",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/mekanism"
         },
         {
             "name": "Mekanism Generators",
@@ -70,7 +78,8 @@
             "fileName": "MekanismGenerators-1.12.2-9.8.3.390.jar",
             "projectID": 268566,
             "fileID": 2835177,
-            "publisher": "bradyaidanc"
+            "publisher": "bradyaidanc",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/mekanism-generators"
         },
         {
             "name": "Mekanism Tools",
@@ -78,7 +87,8 @@
             "fileName": "MekanismTools-1.12.2-9.8.3.390.jar",
             "projectID": 268567,
             "fileID": 2835178,
-            "publisher": "bradyaidanc"
+            "publisher": "bradyaidanc",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/mekanism-tools"
         },
         {
             "name": "Mystical Agradditions",
@@ -86,7 +96,8 @@
             "fileName": "MysticalAgradditions-1.12.2-1.3.2.jar",
             "projectID": 256247,
             "fileID": 2704832,
-            "publisher": "BlakeBr0"
+            "publisher": "BlakeBr0",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/mystical-agradditions"
         },
         {
             "name": "Mystical Agriculture",
@@ -94,15 +105,17 @@
             "fileName": "MysticalAgriculture-1.12.2-1.7.5.jar",
             "projectID": 246640,
             "fileID": 2704562,
-            "publisher": "BlakeBr0"
+            "publisher": "BlakeBr0",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/mystical-agriculture"
         },
         {
-            "name": "Yet Another Recipe Conflict Fixer (YARCF) ",
+            "name": "Yet Another Recipe Conflict Fixer (YARCF)",
             "url": "https://mediafilez.forgecdn.net/files/3310/627/YARCF-0.14(1.12.2).jar",
             "fileName": "YARCF-0.14(1.12.2).jar",
             "projectID": 482566,
             "fileID": 3310627,
-            "publisher": "SirOMGitsYOU"
+            "publisher": "SirOMGitsYOU",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/yarcf"
         },
         {
             "name": "Patchouli",
@@ -110,7 +123,8 @@
             "fileName": "Patchouli-1.0-23.6.jar",
             "projectID": 306770,
             "fileID": 3162874,
-            "publisher": "Vazkii"
+            "publisher": "Vazkii",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/patchouli"
         },
         {
             "name": "Redstone Flux",
@@ -118,7 +132,8 @@
             "fileName": "RedstoneFlux-1.12-2.1.1.1-universal.jar",
             "projectID": 270789,
             "fileID": 2920436,
-            "publisher": "TeamCoFH"
+            "publisher": "TeamCoFH",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/redstone-flux"
         },
         {
             "name": "Tinkers Construct",
@@ -126,7 +141,8 @@
             "fileName": "TConstruct-1.12.2-2.13.0.183.jar",
             "projectID": 74072,
             "fileID": 2902483,
-            "publisher": "mDiyo"
+            "publisher": "mDiyo",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/tinkers-construct"
         },
         {
             "name": "Thermal Expansion",
@@ -134,7 +150,8 @@
             "fileName": "ThermalExpansion-1.12.2-5.5.7.1-universal.jar",
             "projectID": 69163,
             "fileID": 2926431,
-            "publisher": "TeamCoFH"
+            "publisher": "TeamCoFH",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/thermal-expansion"
         },
         {
             "name": "Thermal Foundation",
@@ -142,7 +159,8 @@
             "fileName": "ThermalFoundation-1.12.2-2.6.7.1-universal.jar",
             "projectID": 222880,
             "fileID": 2926428,
-            "publisher": "TeamCoFH"
+            "publisher": "TeamCoFH",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/thermal-foundation"
         },
         {
             "name": "ZeroCore 2",
@@ -150,7 +168,8 @@
             "fileName": "zerocore-1.12.2-0.1.2.9.jar",
             "projectID": 247921,
             "fileID": 3194743,
-            "publisher": "ZeroNoRyouki"
+            "publisher": "ZeroNoRyouki",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/zerocore"
         }
     ],
     "server": [

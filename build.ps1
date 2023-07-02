@@ -2,6 +2,12 @@
 
 $ErrorActionPreference = "Stop"
 
+$version = "1.3.2"
+
+# cleanup
+Remove-Item .\client* -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item .\server* -Recurse -Force -ErrorAction SilentlyContinue
+
 # RLCraft 2.9.3 (client)
 $clientURL = "https://mediafilez.forgecdn.net/files/4612/979/RLCraft+1.12.2+-+Release+v2.9.3.zip"
 # Server
@@ -71,8 +77,30 @@ Write-Output "Copying Valyrin.zs"
 Copy-Item '.\Modpack Configurations\scripts\Valyrin.zs' ".\client\overrides\scripts\Valyrin.zs"
 Copy-Item '.\Modpack Configurations\scripts\Valyrin.zs' ".\server\scripts\Valyrin.zs"
 
+Write-Output "---- Editing manifest and modlist files ----"
+$manifest = Get-Content ".\client\manifest.json" | ConvertFrom-Json
+$modlist = Get-Content ".\client\modlist.html" -Raw
+$end = $modlist.IndexOf("</ul>")
+
+foreach ($common in $mods.common) {
+    $manifest.files += [PSCustomObject]@{
+        projectID = $common.projectID
+        fileID = $common.fileID
+        required = "True"
+    }
+    $modlist = $modlist.Insert($end, "<li><a href=`"$($common.home)`">$($common.name) (by $($common.publisher))</a></li>`n")
+}
+Write-Output "Writing modlist.html"
+$modlist | Out-File ".\client\modlist.html" -Force
+
+$manifest.name = "ProfJam's RLCraft+"
+$manifest.version = $version
+$manifest.author = "Valyrin_"
+
+Write-Output "Writing manifest.json"
+$manifest | ConvertTo-Json | % { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\client\manifest.json"
+
 Write-Output "---- Compressing Archives ----"
-$version = "1.3.2"
 New-Item -ItemType Directory -Name "artifacts" -ErrorAction "SilentlyContinue" | Out-Null
 Compress-Archive -Path ".\client\overrides\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version.zip"
 Compress-Archive -Path ".\server\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version-Server.zip"
