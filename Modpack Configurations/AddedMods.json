@@ -123,22 +123,34 @@
         {
             "name": "Tinkers Construct",
             "url": "https://media.forgecdn.net/files/2902/483/TConstruct-1.12.2-2.13.0.183.jar",
-            "fileName": "TConstruct-1.12.2-2.13.0.183.jar"
+            "fileName": "TConstruct-1.12.2-2.13.0.183.jar",
+            "projectID": 74072,
+            "fileID": 2902483,
+            "publisher": "mDiyo"
         },
         {
             "name": "Thermal Expansion",
             "url": "https://media.forgecdn.net/files/2926/431/ThermalExpansion-1.12.2-5.5.7.1-universal.jar",
-            "fileName": "ThermalExpansion-1.12.2-5.5.7.1-universal.jar"
+            "fileName": "ThermalExpansion-1.12.2-5.5.7.1-universal.jar",
+            "projectID": 69163,
+            "fileID": 2926431,
+            "publisher": "TeamCoFH"
         },
         {
             "name": "Thermal Foundation",
             "url": "https://media.forgecdn.net/files/2926/428/ThermalFoundation-1.12.2-2.6.7.1-universal.jar",
-            "fileName": "ThermalFoundation-1.12.2-2.6.7.1-universal.jar"
+            "fileName": "ThermalFoundation-1.12.2-2.6.7.1-universal.jar",
+            "projectID": 222880,
+            "fileID": 2926428,
+            "publisher": "TeamCoFH"
         },
         {
             "name": "ZeroCore 2",
             "url": "https://mediafilez.forgecdn.net/files/3194/743/zerocore-1.12.2-0.1.2.9.jar",
-            "fileName": "zerocore-1.12.2-0.1.2.9.jar"
+            "fileName": "zerocore-1.12.2-0.1.2.9.jar",
+            "projectID": 247921,
+            "fileID": 3194743,
+            "publisher": "ZeroNoRyouki"
         }
     ],
     "server": [
