@@ -3,77 +3,122 @@
         {
             "name": "Applied Energistics 2",
             "url": "https://media.forgecdn.net/files/2747/63/appliedenergistics2-rv6-stable-7.jar",
-            "fileName": "appliedenergistics2-rv6-stable-7.jar"
+            "fileName": "appliedenergistics2-rv6-stable-7.jar",
+            "projectID": 223794,
+            "fileID": 2747063,
+            "publisher": "thetechnici4n"
         },
         {
             "name": "Code Chicken Lib",
             "url": "https://media.forgecdn.net/files/2779/848/CodeChickenLib-1.12.2-3.2.3.358-universal.jar",
-            "fileName": "CodeChickenLib-1.12.2-3.2.3.358-universal.jar"
+            "fileName": "CodeChickenLib-1.12.2-3.2.3.358-universal.jar",
+            "projectID": 242818,
+            "fileID": 2779848,
+            "publisher": "covers1624"
         },
         {
             "name": "CoFH Core",
             "url": "https://media.forgecdn.net/files/2920/433/CoFHCore-1.12.2-4.6.6.1-universal.jar",
-            "fileName": "CoFHCore-1.12.2-4.6.6.1-universal.jar"
+            "fileName": "CoFHCore-1.12.2-4.6.6.1-universal.jar",
+            "projectID": 69162,
+            "fileID": 2920433,
+            "publisher": "TeamCoFH"
         },
         {
             "name": "CoFH World",
             "url": "https://media.forgecdn.net/files/2920/434/CoFHWorld-1.12.2-1.4.0.1-universal.jar",
-            "fileName": "CoFHWorld-1.12.2-1.4.0.1-universal.jar"
+            "fileName": "CoFHWorld-1.12.2-1.4.0.1-universal.jar",
+            "projectID": 271384,
+            "fileID": 2920434,
+            "publisher": "TeamCoFH"
         },
         {
             "name": "Cucumber",
             "url": "https://media.forgecdn.net/files/2645/867/Cucumber-1.12.2-1.1.3.jar",
-            "fileName": "Cucumber-1.12.2-1.1.3.jar"
+            "fileName": "Cucumber-1.12.2-1.1.3.jar",
+            "projectID": 272335,
+            "fileID": 2645867,
+            "publisher": "BlakeBr0"
         },
         {
             "name": "Extreme Reactors",
             "url": "https://mediafilez.forgecdn.net/files/3194/746/ExtremeReactors-1.12.2-0.4.5.68.jar",
-            "fileName": "ExtremeReactors-1.12.2-0.4.5.68.jar"
+            "fileName": "ExtremeReactors-1.12.2-0.4.5.68.jar",
+            "projectID": 250277,
+            "fileID": 3194746,
+            "publisher": "ZeroNoRyouki"
         },
         {
             "name": "Gravestone",
             "url": "https://media.forgecdn.net/files/2744/766/gravestone-1.10.3.jar",
-            "fileName": "gravestone-1.10.3.jar"
+            "fileName": "gravestone-1.10.3.jar",
+            "projectID": 238551,
+            "fileID": 2744766,
+            "publisher": "henkelmax"
         },
         {
             "name": "Mekanism",
             "url": "https://media.forgecdn.net/files/2835/175/Mekanism-1.12.2-9.8.3.390.jar",
-            "fileName": "Mekanism-1.12.2-9.8.3.390.jar"
+            "fileName": "Mekanism-1.12.2-9.8.3.390.jar",
+            "projectID": 268560,
+            "fileID": 2835175,
+            "publisher": "bradyaidanc"
         },
         {
             "name": "Mekanism Generators",
             "url": "https://media.forgecdn.net/files/2835/177/MekanismGenerators-1.12.2-9.8.3.390.jar",
-            "fileName": "MekanismGenerators-1.12.2-9.8.3.390.jar"
+            "fileName": "MekanismGenerators-1.12.2-9.8.3.390.jar",
+            "projectID": 268566,
+            "fileID": 2835177,
+            "publisher": "bradyaidanc"
         },
         {
             "name": "Mekanism Tools",
             "url": "https://media.forgecdn.net/files/2835/178/MekanismTools-1.12.2-9.8.3.390.jar",
-            "fileName": "MekanismTools-1.12.2-9.8.3.390.jar"
+            "fileName": "MekanismTools-1.12.2-9.8.3.390.jar",
+            "projectID": 268567,
+            "fileID": 2835178,
+            "publisher": "bradyaidanc"
         },
         {
             "name": "Mystical Agradditions",
             "url": "https://media.forgecdn.net/files/2704/832/MysticalAgradditions-1.12.2-1.3.2.jar",
-            "fileName": "MysticalAgradditions-1.12.2-1.3.2.jar"
+            "fileName": "MysticalAgradditions-1.12.2-1.3.2.jar",
+            "projectID": 256247,
+            "fileID": 2704832,
+            "publisher": "BlakeBr0"
         },
         {
             "name": "Mystical Agriculture",
             "url": "https://media.forgecdn.net/files/2704/562/MysticalAgriculture-1.12.2-1.7.5.jar",
-            "fileName": "MysticalAgriculture-1.12.2-1.7.5.jar"
+            "fileName": "MysticalAgriculture-1.12.2-1.7.5.jar",
+            "projectID": 246640,
+            "fileID": 2704562,
+            "publisher": "BlakeBr0"
         },
         {
             "name": "Yet Another Recipe Conflict Fixer (YARCF) ",
             "url": "https://mediafilez.forgecdn.net/files/3310/627/YARCF-0.14(1.12.2).jar",
-            "fileName": "YARCF-0.14(1.12.2).jar"
+            "fileName": "YARCF-0.14(1.12.2).jar",
+            "projectID": 482566,
+            "fileID": 3310627,
+            "publisher": "SirOMGitsYOU"
         },
         {
             "name": "Patchouli",
             "url": "https://media.forgecdn.net/files/3162/874/Patchouli-1.0-23.6.jar",
-            "fileName": "Patchouli-1.0-23.6.jar"
+            "fileName": "Patchouli-1.0-23.6.jar",
+            "projectID": 306770,
+            "fileID": 3162874,
+            "publisher": "Vazkii"
         },
         {
             "name": "Redstone Flux",
             "url": "https://media.forgecdn.net/files/2920/436/RedstoneFlux-1.12-2.1.1.1-universal.jar",
-            "fileName": "RedstoneFlux-1.12-2.1.1.1-universal.jar"
+            "fileName": "RedstoneFlux-1.12-2.1.1.1-universal.jar",
+            "projectID": 270789,
+            "fileID": 2920436,
+            "publisher": "TeamCoFH"
         },
         {
             "name": "Tinkers Construct",
