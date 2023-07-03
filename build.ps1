@@ -7,6 +7,7 @@ $version = "1.3.2"
 # cleanup
 Remove-Item .\client* -Recurse -Force -ErrorAction SilentlyContinue
 Remove-Item .\server* -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item .\artifacts\*
 
 # RLCraft 2.9.3 (client)
 $clientURL = "https://mediafilez.forgecdn.net/files/4612/979/RLCraft+1.12.2+-+Release+v2.9.3.zip"
