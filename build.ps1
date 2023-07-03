@@ -87,7 +87,7 @@ foreach ($common in $mods.common) {
     $manifest.files += [PSCustomObject]@{
         projectID = $common.projectID
         fileID = $common.fileID
-        required = "True"
+        required = $true
     }
     $modlist = $modlist.Insert($end, "<li><a href=`"$($common.home)`">$($common.name) (by $($common.publisher))</a></li>`n")
 }
