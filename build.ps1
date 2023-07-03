@@ -103,6 +103,6 @@ $manifest | ConvertTo-Json -Depth 9 | % { [System.Text.RegularExpressions.Regex]
 Write-Output "---- Compressing Archives ----"
 New-Item -ItemType Directory -Name "artifacts" -ErrorAction "SilentlyContinue" | Out-Null
 Write-Output "Compressing client zip"
-Compress-Archive -Path ".\client\overrides\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version.zip"
+Compress-Archive -Path ".\client\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version.zip"
 Write-Output "Compressing server zip"
 Compress-Archive -Path ".\server\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version-Server.zip"
