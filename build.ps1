@@ -99,7 +99,7 @@ $manifest.version = $version
 $manifest.author = "Valyrin_"
 
 Write-Output "Writing manifest.json"
-$manifest | ConvertTo-Json -Depth 9 -Compress | % { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\client\manifest.json"
+$manifest | ConvertTo-Json -Depth 9 | % { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\client\manifest.json" -Encoding ascii
 
 Write-Output "---- Compressing Archives ----"
 New-Item -ItemType Directory -Name "artifacts" -ErrorAction "SilentlyContinue" | Out-Null
