@@ -7,6 +7,7 @@ $version = "1.3.2"
 # cleanup
 Remove-Item .\client* -Recurse -Force -ErrorAction SilentlyContinue
 Remove-Item .\server* -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item .\artifacts\* -Recurse -Force -ErrorAction SilentlyContinue
 
 # RLCraft 2.9.3 (client)
 $clientURL = "https://mediafilez.forgecdn.net/files/4612/979/RLCraft+1.12.2+-+Release+v2.9.3.zip"
@@ -98,7 +99,7 @@ $manifest.version = $version
 $manifest.author = "Valyrin_"
 
 Write-Output "Writing manifest.json"
-$manifest | ConvertTo-Json -Depth 9 | % { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\client\manifest.json"
+$manifest | ConvertTo-Json -Depth 9 -Compress | % { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\client\manifest.json"
 
 Write-Output "---- Compressing Archives ----"
 New-Item -ItemType Directory -Name "artifacts" -ErrorAction "SilentlyContinue" | Out-Null
