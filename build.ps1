@@ -71,7 +71,7 @@ $start = $shiv.IndexOf("recipes.addShaped(`"lolarecipe71`"")
 $end = $shiv.IndexOf(";", $start)
 $length = $end - $start
 $shiv.Remove($start, $length + 1).Insert($start, "# lolarecipe71 (Chiller) moved to Valyrin.zs") `
-    | Out-File ".\client\overrides\scripts\Shiv.zs"
+    | Out-File ".\client\overrides\scripts\Shiv.zs" -Encoding ascii
 Copy-Item ".\client\overrides\scripts\Shiv.zs" ".\server\scripts\Shiv.zs" -Force
 
 Write-Output "Copying Valyrin.zs"
