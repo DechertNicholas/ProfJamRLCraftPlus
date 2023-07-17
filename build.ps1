@@ -110,9 +110,38 @@ $manifest.author = "Valyrin_"
 Write-Output "Writing manifest.json"
 $manifest | ConvertTo-Json -Depth 9 | % { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\client\manifest.json" -Encoding ascii
 
+# build the container-friendly version
+Write-Output "Building the server-container version"
+New-Item -ItemType Directory -Path ".\server-container"
+Copy-Item ".\client\*" ".\server-container\" -Recurse
+# just copy all the server configs
+Copy-Item ".\server\config\*" ".\server-container\overrides\config\" -Recurse -Force # force overwrite
+
+Write-Output "---- Editing container manifest and modlist files ----"
+$cManifest = Get-Content ".\server-container\manifest.json" | ConvertFrom-Json
+$cModlist = Get-Content ".\server-container\modlist.html" -Raw
+$cEnd = $cModlist.IndexOf("</ul>")
+
+foreach ($server in $mods.server) {
+    $cManifest.files += [PSCustomObject]@{
+        projectID = $server.projectID
+        fileID = $server.fileID
+        required = $true
+    }
+    $cModlist = $cModlist.Insert($cEnd, "<li><a href=`"$($server.home)`">$($server.name) (by $($server.publisher))</a></li>`n")
+}
+Write-Output "Writing modlist.html"
+$cModlist | Out-File ".\server-container\modlist.html" -Force
+
+Write-Output "Writing manifest.json"
+$cManifest | ConvertTo-Json -Depth 9 | % { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\server-container\manifest.json" -Encoding ascii
+
+
 Write-Output "---- Compressing Archives ----"
 New-Item -ItemType Directory -Name "artifacts" -ErrorAction "SilentlyContinue" | Out-Null
 Write-Output "Compressing client zip"
 Compress-Archive -Path ".\client\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version.zip"
 Write-Output "Compressing server zip"
 NanaZipC.exe a ".\artifacts\ProfJam's RLCraft+ $version-Server.zip" ".\server\*"
+Write-Output "Compressing container zip"
+NanaZipC.exe a ".\artifacts\ProfJam's RLCraft+ $version-Container.zip" ".\server-container\*"
