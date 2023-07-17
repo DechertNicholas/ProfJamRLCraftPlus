@@ -64,6 +64,15 @@ $lMobsPath = ".\server\config\lycanitesmobs\mobevents.cfg"
 $lMobs = Get-Content $lMobsPath -Raw
 $lMobs.Replace("B:`"Mob Events Enabled`"=true", "B:`"Mob Events Enabled`"=false") | Out-File $lMobsPath
 
+$lSpawnPath = ".\server\config\lycanitesmobs\spawning.cfg"
+$lSpawn = Get-Content $lSpawnPath -Raw
+$lSpawn.Replace(
+    "D:`"Mob Limit Search Range`"=32.0", "D:`"Mob Limit Search Range`"=22.0"
+    ).Replace(
+        "I:`"Mob Type Limit`"=16", "I:`"Mob Type Limit`"=4"
+    ).Replace('B:"Ignore WorldGen Spawning"=true', 'B:"Ignore WorldGen Spawning"=false'
+    ) | Out-File $lSpawnPath
+
 Write-Output "---- Processing Scripts ----"
 Write-Output "Editing Shiv.zs"
 $shiv = Get-Content ".\client\overrides\scripts\Shiv.zs" -Raw
@@ -106,4 +115,4 @@ New-Item -ItemType Directory -Name "artifacts" -ErrorAction "SilentlyContinue" |
 Write-Output "Compressing client zip"
 Compress-Archive -Path ".\client\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version.zip"
 Write-Output "Compressing server zip"
-Compress-Archive -Path ".\server\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version-Server.zip"
+NanaZipC.exe a ".\artifacts\ProfJam's RLCraft+ $version-Server.zip" ".\server\*"
