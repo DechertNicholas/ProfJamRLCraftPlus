@@ -141,6 +141,15 @@ $cModlist | Out-File ".\server-container\modlist.html" -Force
 Write-Output "Writing manifest.json"
 $cManifest | ConvertTo-Json -Depth 9 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\server-container\manifest.json" -Encoding ascii
 
+Write-Output "Checking for NanaZip installation"
+if ( -not (Get-AppxPackage | select Name | where {$_.Name -like "*NanaZip*"}) ) {
+    $nanazip = @{
+        Uri = "https://github.com/M2Team/NanaZip/releases/download/2.0.450/40174MouriNaruto.NanaZip_2.0.450.0_gnj4mf6z9tkrc.msixbundle"
+        OutFile = "NanaZip.msixbundle"
+    }
+    Invoke-WebRequest @nanazip
+    Add-AppxPackage $nanazip.OutFile
+}
 
 Write-Output "---- Compressing Archives ----"
 New-Item -ItemType Directory -Name "artifacts" -ErrorAction "SilentlyContinue" | Out-Null
