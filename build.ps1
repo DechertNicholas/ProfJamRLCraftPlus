@@ -155,7 +155,7 @@ if ( -not (Test-Path ".\nanazip\nanazip64\NanaZipC.exe") ) {
 Write-Output "---- Compressing Archives ----"
 New-Item -ItemType Directory -Name "artifacts" -ErrorAction "SilentlyContinue" | Out-Null
 Write-Output "Compressing client zip"
-Compress-Archive -Path ".\client\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version.zip"
+Compress-Archive -Path ".\client\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version-Client.zip"
 # linux has issues unzipping powershell-compressed zips for some reason, but nanazip works
 Write-Output "Compressing server zip"
 .\nanazip\nanazip64\NanaZipC.exe a ".\artifacts\ProfJam's RLCraft+ $version-Server.zip" ".\server\*"

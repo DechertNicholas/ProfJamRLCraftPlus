@@ -26,12 +26,32 @@ jobs:
       - name: Run a one-line script
         run: .\build.ps1
       
-      - name: Upload a Build Artifact
+      - name: Upload Client Artifact
         uses: actions/upload-artifact@v3.1.2
         with:
           # Artifact name
-          #name: "client"
+          name: "client build"
           # A file, directory or wildcard pattern that describes what to upload
-          path: artifacts
+          path: artifacts\*-Client.zip
+          # The desired behavior if no files are found using the provided path.
+          if-no-files-found: error
+
+      - name: Upload Server Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          # Artifact name
+          name: "server build"
+          # A file, directory or wildcard pattern that describes what to upload
+          path: artifacts\*-Server.zip
+          # The desired behavior if no files are found using the provided path.
+          if-no-files-found: error
+
+      - name: Upload Container Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          # Artifact name
+          name: "container build"
+          # A file, directory or wildcard pattern that describes what to upload
+          path: artifacts\*-Container.zip
           # The desired behavior if no files are found using the provided path.
           if-no-files-found: error
