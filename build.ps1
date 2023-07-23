@@ -142,20 +142,22 @@ Write-Output "Writing manifest.json"
 $cManifest | ConvertTo-Json -Depth 9 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\server-container\manifest.json" -Encoding ascii
 
 Write-Output "Checking for NanaZip installation"
-if ( -not (Get-AppxPackage | select Name | where {$_.Name -like "*NanaZip*"}) ) {
+if ( -not (Test-Path ".\nanazip\nanazip64\NanaZipC.exe") ) {
     $nanazip = @{
         Uri = "https://github.com/M2Team/NanaZip/releases/download/2.0.450/40174MouriNaruto.NanaZip_2.0.450.0_gnj4mf6z9tkrc.msixbundle"
         OutFile = "NanaZip.msixbundle"
     }
     Invoke-WebRequest @nanazip
-    Add-AppxPackage $nanazip.OutFile
+    Expand-Archive ".\NanaZip.msixbundle" ".\nanazip\"
+    Expand-Archive ".\nanazip\NanaZipPackage_2.0.450.0_x64.msix" ".\nanazip\nanazip64\"
 }
 
 Write-Output "---- Compressing Archives ----"
 New-Item -ItemType Directory -Name "artifacts" -ErrorAction "SilentlyContinue" | Out-Null
 Write-Output "Compressing client zip"
 Compress-Archive -Path ".\client\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version.zip"
+# linux has issues unzipping powershell-compressed zips for some reason, but nanazip works
 Write-Output "Compressing server zip"
-NanaZipC.exe a ".\artifacts\ProfJam's RLCraft+ $version-Server.zip" ".\server\*"
+.\nanazip\nanazip64\NanaZipC.exe a ".\artifacts\ProfJam's RLCraft+ $version-Server.zip" ".\server\*"
 Write-Output "Compressing container zip"
-NanaZipC.exe a ".\artifacts\ProfJam's RLCraft+ $version-Container.zip" ".\server-container\*"
+.\nanazip\nanazip64\NanaZipC.exe a ".\artifacts\ProfJam's RLCraft+ $version-Container.zip" ".\server-container\*"
