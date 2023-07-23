@@ -2,7 +2,7 @@
 
 $ErrorActionPreference = "Stop"
 
-$version = "1.3.2"
+$version = "1.3.3"
 
 # cleanup
 Remove-Item .\client* -Recurse -Force -ErrorAction SilentlyContinue
@@ -59,6 +59,11 @@ Write-Output "Processing Tinker's Construct"
 Copy-Item '.\Modpack Configurations\config\tconstruct.cfg' ".\client\overrides\config\tconstruct.cfg"
 Copy-Item '.\Modpack Configurations\config\tconstruct.cfg' ".\server\config\tconstruct.cfg"
 
+# TODO: Dynamically add this instead of overwriting the whole file
+Write-Output "Processing ArmorUnder"
+Copy-Item '.\Modpack Configurations\config\wabbity_armorunder.cfg' ".\client\overrides\config\wabbity_armorunder.cfg"
+Copy-Item '.\Modpack Configurations\config\wabbity_armorunder.cfg' ".\server\config\wabbity_armorunder.cfg"
+
 Write-Output "Processing Lycanite's Mobs"
 $lMobsPath = ".\server\config\lycanitesmobs\mobevents.cfg"
 $lMobs = Get-Content $lMobsPath -Raw
@@ -108,7 +113,7 @@ $manifest.version = $version
 $manifest.author = "Valyrin_"
 
 Write-Output "Writing manifest.json"
-$manifest | ConvertTo-Json -Depth 9 | % { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\client\manifest.json" -Encoding ascii
+$manifest | ConvertTo-Json -Depth 9 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\client\manifest.json" -Encoding ascii
 
 # build the container-friendly version
 Write-Output "Building the server-container version"
@@ -134,7 +139,7 @@ Write-Output "Writing modlist.html"
 $cModlist | Out-File ".\server-container\modlist.html" -Force
 
 Write-Output "Writing manifest.json"
-$cManifest | ConvertTo-Json -Depth 9 | % { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\server-container\manifest.json" -Encoding ascii
+$cManifest | ConvertTo-Json -Depth 9 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\server-container\manifest.json" -Encoding ascii
 
 
 Write-Output "---- Compressing Archives ----"
