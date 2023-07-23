@@ -176,12 +176,20 @@
         {
             "name": "Morpheus",
             "url": "https://mediafilez.forgecdn.net/files/2664/449/Morpheus-1.12.2-3.5.106.jar",
-            "fileName": "Morpheus-1.12.2-3.5.106.jar"
+            "fileName": "Morpheus-1.12.2-3.5.106.jar",
+            "projectID": 69118,
+            "fileID": 2664449,
+            "publisher": "Quetzi",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/morpheus"
         },
         {
             "name": "Quick Teleports",
             "url": "https://mediafilez.forgecdn.net/files/2851/881/quickteleports-1.12.2-1.1.1.jar",
-            "fileName": "quickteleports-1.12.2-1.1.1.jar"
+            "fileName": "quickteleports-1.12.2-1.1.1.jar",
+            "projectID": 315037,
+            "fileID": 2851881,
+            "publisher": "itsmeowdev",
+            "home": "https://www.curseforge.com/minecraft/mc-mods/quickteleports"
         }
     ]
 }

@@ -2,7 +2,7 @@
 
 $ErrorActionPreference = "Stop"
 
-$version = "1.3.2"
+$version = "1.3.3"
 
 # cleanup
 Remove-Item .\client* -Recurse -Force -ErrorAction SilentlyContinue
@@ -59,10 +59,24 @@ Write-Output "Processing Tinker's Construct"
 Copy-Item '.\Modpack Configurations\config\tconstruct.cfg' ".\client\overrides\config\tconstruct.cfg"
 Copy-Item '.\Modpack Configurations\config\tconstruct.cfg' ".\server\config\tconstruct.cfg"
 
+# TODO: Dynamically add this instead of overwriting the whole file
+Write-Output "Processing ArmorUnder"
+Copy-Item '.\Modpack Configurations\config\wabbity_armorunder.cfg' ".\client\overrides\config\wabbity_armorunder.cfg"
+Copy-Item '.\Modpack Configurations\config\wabbity_armorunder.cfg' ".\server\config\wabbity_armorunder.cfg"
+
 Write-Output "Processing Lycanite's Mobs"
 $lMobsPath = ".\server\config\lycanitesmobs\mobevents.cfg"
 $lMobs = Get-Content $lMobsPath -Raw
 $lMobs.Replace("B:`"Mob Events Enabled`"=true", "B:`"Mob Events Enabled`"=false") | Out-File $lMobsPath
+
+$lSpawnPath = ".\server\config\lycanitesmobs\spawning.cfg"
+$lSpawn = Get-Content $lSpawnPath -Raw
+$lSpawn.Replace(
+    "D:`"Mob Limit Search Range`"=32.0", "D:`"Mob Limit Search Range`"=22.0"
+    ).Replace(
+        "I:`"Mob Type Limit`"=16", "I:`"Mob Type Limit`"=4"
+    ).Replace('B:"Ignore WorldGen Spawning"=true', 'B:"Ignore WorldGen Spawning"=false'
+    ) | Out-File $lSpawnPath
 
 Write-Output "---- Processing Scripts ----"
 Write-Output "Editing Shiv.zs"
@@ -99,11 +113,51 @@ $manifest.version = $version
 $manifest.author = "Valyrin_"
 
 Write-Output "Writing manifest.json"
-$manifest | ConvertTo-Json -Depth 9 | % { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\client\manifest.json" -Encoding ascii
+$manifest | ConvertTo-Json -Depth 9 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\client\manifest.json" -Encoding ascii
+
+# build the container-friendly version
+Write-Output "Building the server-container version"
+New-Item -ItemType Directory -Path ".\server-container"
+Copy-Item ".\client\*" ".\server-container\" -Recurse
+# just copy all the server configs
+Copy-Item ".\server\config\*" ".\server-container\overrides\config\" -Recurse -Force # force overwrite
+
+Write-Output "---- Editing container manifest and modlist files ----"
+$cManifest = Get-Content ".\server-container\manifest.json" | ConvertFrom-Json
+$cModlist = Get-Content ".\server-container\modlist.html" -Raw
+$cEnd = $cModlist.IndexOf("</ul>")
+
+foreach ($server in $mods.server) {
+    $cManifest.files += [PSCustomObject]@{
+        projectID = $server.projectID
+        fileID = $server.fileID
+        required = $true
+    }
+    $cModlist = $cModlist.Insert($cEnd, "<li><a href=`"$($server.home)`">$($server.name) (by $($server.publisher))</a></li>`n")
+}
+Write-Output "Writing modlist.html"
+$cModlist | Out-File ".\server-container\modlist.html" -Force
+
+Write-Output "Writing manifest.json"
+$cManifest | ConvertTo-Json -Depth 9 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Out-File ".\server-container\manifest.json" -Encoding ascii
+
+Write-Output "Checking for NanaZip installation"
+if ( -not (Test-Path ".\nanazip\nanazip64\NanaZipC.exe") ) {
+    $nanazip = @{
+        Uri = "https://github.com/M2Team/NanaZip/releases/download/2.0.450/40174MouriNaruto.NanaZip_2.0.450.0_gnj4mf6z9tkrc.msixbundle"
+        OutFile = "NanaZip.msixbundle"
+    }
+    Invoke-WebRequest @nanazip
+    Expand-Archive ".\NanaZip.msixbundle" ".\nanazip\"
+    Expand-Archive ".\nanazip\NanaZipPackage_2.0.450.0_x64.msix" ".\nanazip\nanazip64\"
+}
 
 Write-Output "---- Compressing Archives ----"
 New-Item -ItemType Directory -Name "artifacts" -ErrorAction "SilentlyContinue" | Out-Null
 Write-Output "Compressing client zip"
-Compress-Archive -Path ".\client\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version.zip"
+Compress-Archive -Path ".\client\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version-Client.zip"
+# linux has issues unzipping powershell-compressed zips for some reason, but nanazip works
 Write-Output "Compressing server zip"
-Compress-Archive -Path ".\server\*" -DestinationPath ".\artifacts\ProfJam's RLCraft+ $version-Server.zip"
+.\nanazip\nanazip64\NanaZipC.exe a ".\artifacts\ProfJam's RLCraft+ $version-Server.zip" ".\server\*"
+Write-Output "Compressing container zip"
+.\nanazip\nanazip64\NanaZipC.exe a ".\artifacts\ProfJam's RLCraft+ $version-Container.zip" ".\server-container\*"

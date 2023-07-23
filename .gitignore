@@ -1,3 +1,6 @@
 *.zip
 client/
 server/
+server-container/
+*.msixbundle
+nanazip/*
