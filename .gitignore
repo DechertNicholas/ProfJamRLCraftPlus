@@ -4,3 +4,4 @@ server/
 server-container/
 *.msixbundle
 nanazip/*
+.downloadCache

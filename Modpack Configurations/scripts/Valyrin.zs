@@ -80,3 +80,20 @@ furnace.addRecipe(<thermalfoundation:material:130>, <mekanism:dust:5>);
 
 var oreCrystalHeart as IOreDictEntry = <ore:oreCrystalHeart>;
 oreCrystalHeart.addItems([<scalinghealth:crystalore>]);
+
+// Thermal Foundation Sap/Resin is impossible to obtain due to Dymanic Trees,
+// so add some stuff here for it
+// Dark Oak
+mods.thermalexpansion.Transposer.addExtractRecipe(<liquid:sap> * 100, <minecraft:log2:1>, 360);
+// Oak
+mods.thermalexpansion.Transposer.addExtractRecipe(<liquid:sap> * 50, <minecraft:log:0>, 360);
+// Birch, Jungle, Acacia
+mods.thermalexpansion.Transposer.addExtractRecipe(<liquid:resin> * 50, <minecraft:log:2>, 360);
+mods.thermalexpansion.Transposer.addExtractRecipe(<liquid:resin> * 50, <minecraft:log:3>, 360);
+mods.thermalexpansion.Transposer.addExtractRecipe(<liquid:resin> * 50, <minecraft:log2:0>, 360);
+// Spruce
+mods.thermalexpansion.Transposer.addExtractRecipe(<liquid:resin> * 100, <minecraft:log:1>, 360);
+
+# steel nuggets
+val nuggetSteel = <ore:nuggetSteel>;
+nuggetSteel.addItems([<contenttweaker:steel_nugget>]);

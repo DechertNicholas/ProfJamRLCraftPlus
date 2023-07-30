@@ -2,7 +2,10 @@
 
 $ErrorActionPreference = "Stop"
 
-$version = "1.3.3"
+$version = "1.3.4"
+
+# for running locally, don't re-download
+New-Item -ItemType Directory -Path ".\.downloadCache\mods" -Force | Out-Null
 
 # cleanup
 Remove-Item .\client* -Recurse -Force -ErrorAction SilentlyContinue
@@ -14,36 +17,39 @@ $clientURL = "https://mediafilez.forgecdn.net/files/4612/979/RLCraft+1.12.2+-+Re
 # Server
 $serverURL = "https://mediafilez.forgecdn.net/files/4612/990/RLCraft+Server+Pack+1.12.2+-+Release+v2.9.3.zip"
 
-$clientZip = "client.zip"
-$serverZip = "server.zip"
+$clientZip = ".\.downloadCache\client.zip"
+$serverZip = ".\.downloadCache\server.zip"
 
 $ProgressPreference = "SilentlyContinue"
 Write-Output "---- Downloading Zips ----"
 Write-Output "Downloading client zip"
-Invoke-WebRequest -Uri $clientURL -OutFile $clientZip
+if (-not (Test-Path $clientZip)) {Invoke-WebRequest -Uri $clientURL -OutFile $clientZip}
 Write-Output "Downloading server zip"
-Invoke-WebRequest -Uri $serverURL -OutFile $serverZip
+if (-not (Test-Path $serverZip)) {Invoke-WebRequest -Uri $serverURL -OutFile $serverZip}
 
 Write-Output "Extracting client zip"
 Expand-Archive $clientZip -DestinationPath .\client
 Write-Output "Extracting server zip"
 Expand-Archive $serverZip -DestinationPath .\server
 
-#$clientFolderPrefix = ".\client\overrides\mods"
 $serverFolderPrefix = ".\server\mods"
-
 $mods = Get-Content '.\Modpack Configurations\AddedMods.json' | ConvertFrom-Json
 
 Write-Output "---- Downloading Mods ----"
 foreach ($common in $mods.common) {
     Write-Output "Processing $($common.name)"
-    Invoke-WebRequest -Uri $common.url -OutFile "$serverFolderPrefix\$($common.fileName)"
-    #Copy-Item "$clientFolderPrefix\$($common.fileName)" "$serverFolderPrefix\$($common.fileName)"
+    if (-not (Test-Path ".\.downloadCache\mods\$($common.fileName)")) {
+        Invoke-WebRequest -Uri $common.url -OutFile ".\.downloadCache\mods\$($common.fileName)"
+    }
+    Copy-Item ".\.downloadCache\mods\$($common.fileName)" "$serverFolderPrefix\$($common.fileName)"
 }
 
 foreach ($server in $mods.server) {
     Write-Output "Processing $($server.name)"
-    Invoke-WebRequest -Uri $server.url -OutFile "$serverFolderPrefix\$($server.fileName)"
+    if (-not (Test-Path ".\.downloadCache\mods\$($server.fileName)")) {
+        Invoke-WebRequest -Uri $server.url -OutFile ".\.downloadCache\mods\$($server.fileName)"
+    }
+    Copy-Item ".\.downloadCache\mods\$($server.fileName)" "$serverFolderPrefix\$($server.fileName)"
 }
 
 Write-Output "---- Processing configuration changes ----"
@@ -79,7 +85,43 @@ $lSpawn.Replace(
     ) | Out-File $lSpawnPath
 
 Write-Output "---- Processing Scripts ----"
-Write-Output "Editing Shiv.zs"
+$files = @(
+    ".\client\overrides\scripts\Shiv.zs",
+    ".\client\overrides\scripts\Shiv2.zs"
+)
+# add silver compatability
+# some recipies output silver ingots, and they have to be specific. So, a specific replace is needed.
+# declare here to access outside the loop
+$substitutions = @{
+    "<iceandfire:silver_ingot>" = "<ore:ingotSilver>"
+    "<contenttweaker:steel_nugget>" = "<ore:nuggetSteel>"
+}
+foreach ($file in $files) {
+    Write-Output "Editing $(Split-Path $file -Leaf)"
+    $zs = Get-Content $file -Raw
+    foreach ($key in $substitutions.Keys) {
+        $start = 0
+        while ($true) {
+            # get a shaped recipe
+            $start = $zs.indexOf("recipes.addShaped", $start + 1)
+            if ($start -eq -1) {
+                # reached end of file
+                break
+            }
+            $end = $zs.indexOf(";", $start)
+            $length = $end - $start
+            if ($zs.Substring($start, $length) -like "*$key*") {
+                Write-Output "Changing recipe`n$($zs.Substring($start, $length))"
+                $subRecipe = $zs.Substring($start, $length) -replace $key, $substitutions[$key]
+                $zs = $zs.Remove($start, $length).Insert($start, $subRecipe)
+            }
+        }
+        $zs | Out-File $file -Encoding ascii
+    }
+}
+
+# add blizz/frost rod compatability by removing the added recipe
+$start = 0
 $shiv = Get-Content ".\client\overrides\scripts\Shiv.zs" -Raw
 $start = $shiv.IndexOf("recipes.addShaped(`"lolarecipe71`"")
 $end = $shiv.IndexOf(";", $start)
@@ -117,7 +159,7 @@ $manifest | ConvertTo-Json -Depth 9 | ForEach-Object { [System.Text.RegularExpre
 
 # build the container-friendly version
 Write-Output "Building the server-container version"
-New-Item -ItemType Directory -Path ".\server-container"
+New-Item -ItemType Directory -Path ".\server-container" | Out-Null
 Copy-Item ".\client\*" ".\server-container\" -Recurse
 # just copy all the server configs
 Copy-Item ".\server\config\*" ".\server-container\overrides\config\" -Recurse -Force # force overwrite
