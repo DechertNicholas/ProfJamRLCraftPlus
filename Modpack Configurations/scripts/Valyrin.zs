@@ -93,3 +93,7 @@ mods.thermalexpansion.Transposer.addExtractRecipe(<liquid:resin> * 50, <minecraf
 mods.thermalexpansion.Transposer.addExtractRecipe(<liquid:resin> * 50, <minecraft:log2:0>, 360);
 // Spruce
 mods.thermalexpansion.Transposer.addExtractRecipe(<liquid:resin> * 100, <minecraft:log:1>, 360);
+
+# steel nuggets
+val nuggetSteel = <ore:nuggetSteel>;
+nuggetSteel.addItems([<contenttweaker:steel_nugget>]);
