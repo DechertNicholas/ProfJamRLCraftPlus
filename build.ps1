@@ -117,7 +117,7 @@ $manifest | ConvertTo-Json -Depth 9 | ForEach-Object { [System.Text.RegularExpre
 
 # build the container-friendly version
 Write-Output "Building the server-container version"
-New-Item -ItemType Directory -Path ".\server-container"
+New-Item -ItemType Directory -Path ".\server-container" | Out-Null
 Copy-Item ".\client\*" ".\server-container\" -Recurse
 # just copy all the server configs
 Copy-Item ".\server\config\*" ".\server-container\overrides\config\" -Recurse -Force # force overwrite
